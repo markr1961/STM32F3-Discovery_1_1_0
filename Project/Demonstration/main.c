@@ -58,7 +58,7 @@ uint8_t Xval, Yval = 0x00;
 
 __IO uint8_t DataReady = 0;
 __IO uint8_t PrevXferComplete = 1;
-__IO uint32_t USBConnectTimeOut = 100;
+__IO uint32_t USBConnectTimeOut = 1000;
 
 float fNormAcc,fSinRoll,fCosRoll,fSinPitch,fCosPitch = 0.0f, RollAng = 0.0f, PitchAng = 0.0f;
 float fTiltedX,fTiltedY = 0.0f;
@@ -73,9 +73,9 @@ float fTiltedX,fTiltedY = 0.0f;
 int main(void)
 {  
   uint8_t i = 0;
-  /* SysTick end of count event each 10ms */
+  /* SysTick end of count event each 1mS */
   RCC_GetClocksFreq(&RCC_Clocks);
-  SysTick_Config(RCC_Clocks.HCLK_Frequency / 100);
+  SysTick_Config(RCC_Clocks.HCLK_Frequency / 1000);
   
   /* Initialize LEDs and User Button available on STM32F3-Discovery board */
   STM_EVAL_LEDInit(LED3);
@@ -114,35 +114,35 @@ int main(void)
       /* Toggle LD3 */
       STM_EVAL_LEDToggle(LED3);
       /* Insert 50 ms delay */
-      Delay(5);
+      Delay(50);
       /* Toggle LD5 */
       STM_EVAL_LEDToggle(LED5);
       /* Insert 50 ms delay */
-      Delay(5);
+      Delay(50);
       /* Toggle LD7 */
       STM_EVAL_LEDToggle(LED7);
       /* Insert 50 ms delay */
-      Delay(5);
+      Delay(50);
       /* Toggle LD9 */
       STM_EVAL_LEDToggle(LED9);
       /* Insert 50 ms delay */
-      Delay(5);
+      Delay(50);
       /* Toggle LD10 */
       STM_EVAL_LEDToggle(LED10);
       /* Insert 50 ms delay */
-      Delay(5);
+      Delay(50);
       /* Toggle LD8 */
       STM_EVAL_LEDToggle(LED8);
       /* Insert 50 ms delay */
-      Delay(5); 
+      Delay(50); 
       /* Toggle LD6 */
       STM_EVAL_LEDToggle(LED6);
       /* Insert 50 ms delay */
-      Delay(5);
+      Delay(50);
       /* Toggle LD4 */
       STM_EVAL_LEDToggle(LED4);
       /* Insert 50 ms delay */
-      Delay(5);
+      Delay(50);
     }
     
     DataReady = 0x00;
@@ -164,7 +164,7 @@ int main(void)
     while (UserButtonPressed == 0x01)
     {
       /* Wait for data ready */
-      while(DataReady != 0x05)
+      while(DataReady != 0x05*10u)
       {}
       DataReady = 0x00;
       
@@ -232,7 +232,7 @@ int main(void)
     while (UserButtonPressed == 0x02)
     {
       /* Wait for data ready */
-      while(DataReady !=0x05)
+      while(DataReady !=0x05*10u)
       {}
       DataReady = 0x00;
       

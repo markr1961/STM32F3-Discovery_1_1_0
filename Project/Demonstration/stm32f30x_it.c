@@ -45,6 +45,8 @@ extern __IO uint8_t DataReady;
 extern __IO uint32_t USBConnectTimeOut;
 __IO uint32_t i =0;
 
+uint32_t  systick1mS;
+
 /* Private function prototypes -----------------------------------------------*/
 /* Private functions ---------------------------------------------------------*/
 
@@ -147,9 +149,11 @@ void PendSV_Handler(void)
   */
 void SysTick_Handler(void)
 {
+  systick1mS++;
   TimingDelay_Decrement();
-  USBConnectTimeOut--;
-  DataReady ++;
+  if (USBConnectTimeOut)
+    USBConnectTimeOut--;
+  DataReady++;
 }
 
 /******************************************************************************/
