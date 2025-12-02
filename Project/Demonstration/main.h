@@ -30,9 +30,11 @@
 #define __MAIN_H
 
 /* Includes ------------------------------------------------------------------*/
-#include "stm32f30x.h"
-#include "stm32f3_discovery.h"
 #include <stdio.h>
+#include <stdbool.h>
+#include "stm32f30x.h"
+#include "stm32f30x_it.h"
+#include "stm32f3_discovery.h"
 #include "stm32f3_discovery_lsm303dlhc.h"
 #include "stm32f3_discovery_l3gd20.h"
 #include "usb_lib.h"
@@ -43,6 +45,7 @@
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/
 /* Exported macro ------------------------------------------------------------*/
+extern __IO uint32_t UserButtonPressed;
 /* Exported functions ------------------------------------------------------- */
 void Demo_USB (void);
 void Demo_GyroConfig(void);
@@ -51,7 +54,8 @@ void Demo_CompassConfig(void);
 void Demo_CompassReadMag (float* pfData);
 void Demo_CompassReadAcc(float* pfData);
 void TimingDelay_Decrement(void);
-void Delay(__IO uint32_t nTime);
+void SetDelay(__IO uint32_t nTime);
+uint32_t GetTimeDelay(void);
 
 #endif /* __MAIN_H */
 

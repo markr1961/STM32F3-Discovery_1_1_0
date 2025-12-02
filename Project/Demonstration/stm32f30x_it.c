@@ -28,7 +28,6 @@
   */
 
 /* Includes ------------------------------------------------------------------*/
-#include "stm32f30x_it.h"
 #include "main.h"
 #include "usb_istr.h"
 
@@ -40,12 +39,10 @@
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
-extern __IO uint32_t UserButtonPressed;
-extern __IO uint8_t DataReady;
 extern __IO uint32_t USBConnectTimeOut;
 __IO uint32_t i =0;
 
-uint32_t  systick1mS;
+volatile uint32_t  systick1mS;
 
 /* Private function prototypes -----------------------------------------------*/
 /* Private functions ---------------------------------------------------------*/
@@ -153,7 +150,6 @@ void SysTick_Handler(void)
   TimingDelay_Decrement();
   if (USBConnectTimeOut)
     USBConnectTimeOut--;
-  DataReady++;
 }
 
 /******************************************************************************/

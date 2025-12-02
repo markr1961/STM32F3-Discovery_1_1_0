@@ -257,8 +257,19 @@ uint32_t STM_EVAL_PBGetState(Button_TypeDef Button)
 }
 
 /**
-  * @}
+  * @brief turn OFF all _other_ LEDs
+  * @param LED to leave ON.
   */ 
+void STM_EVAL_OtherLEDOff(Led_TypeDef Led)
+{
+  for(unsigned int i = 0; i < sizeof(GPIO_PIN) / sizeof(uint16_t); i++)
+  {
+    if ((Led_TypeDef)i != Led)
+    {
+      GPIO_PORT[i]->BRR = GPIO_PIN[i];
+    }
+  }
+}
 
 /**
   * @}

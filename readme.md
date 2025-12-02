@@ -1,5 +1,7 @@
 A copy of ST's F3-Discovery demonstration and example code circa 2012
 
+gyro and compass functions appear to work. USB is untested.
+
 Note: IRQ function names are different from newer version of CMSIS. 
 This was intentionally not changed to maintain compatibility with demo code.
 If this code is ported to a newer HAL or CMSIS, it will probably break the compile.

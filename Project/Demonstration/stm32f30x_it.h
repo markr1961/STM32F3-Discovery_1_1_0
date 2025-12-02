@@ -39,7 +39,7 @@
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/
 /* Exported macro ------------------------------------------------------------*/
-extern uint32_t  systick1mS;
+extern volatile uint32_t  systick1mS;
 /* Exported functions ------------------------------------------------------- */
 
 void NMI_Handler(void);
